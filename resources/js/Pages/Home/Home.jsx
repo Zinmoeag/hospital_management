@@ -1,14 +1,15 @@
-import Nav from '../../Components/Nav.jsx'
+import GuestLayout from '../../Layouts/GuestLayout.jsx'
 import Hero from './partials/Hero.jsx'
 
 const Home  = ({auth}) => {
     return (
         <>
-            <Nav 
+            <GuestLayout
                 auth={auth}
-            />
-            <Hero />
-            <h3>Home</h3>
+            >
+                <Hero />
+                <h3>Home</h3>
+            </GuestLayout>
         </>
     )
 }  

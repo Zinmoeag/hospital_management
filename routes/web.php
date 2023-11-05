@@ -17,13 +17,27 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{locale}', function (string $locale) {
+    // if (! in_array($locale, ['en', 'es', 'fr'])) {
+    //     abort(400);
+    // }
+ 
+    // App::setLocale($locale);
+    // dd($locale);
+    // Session::put("locale",$locale);
+
     return Inertia::render('Home/Home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
+ 
+    // ...
+});
+
+Route::get('/', function () {
+    
 });
 
 Route::get("/test", function () {
