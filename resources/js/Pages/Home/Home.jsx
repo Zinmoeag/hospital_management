@@ -1,14 +1,17 @@
 import GuestLayout from '../../Layouts/GuestLayout.jsx'
 import Hero from './partials/Hero.jsx'
 
-const Home  = ({auth}) => {
+const Home  = ({auth,  heroTranslationFile, locale}) => {
+
     return (
         <>
             <GuestLayout
                 auth={auth}
+                locale={locale}
             >
-                <Hero />
-                <h3>Home</h3>
+                <Hero 
+                translationFile={heroTranslationFile}
+                />
             </GuestLayout>
         </>
     )

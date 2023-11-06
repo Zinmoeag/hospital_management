@@ -17,28 +17,28 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/{locale}', function (string $locale) {
-    // if (! in_array($locale, ['en', 'es', 'fr'])) {
-    //     abort(400);
-    // }
- 
-    // App::setLocale($locale);
-    // dd($locale);
-    // Session::put("locale",$locale);
-
-    return Inertia::render('Home/Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
- 
-    // ...
-});
-
 Route::get('/', function () {
-    
+    return redirect("/en");
 });
+
+Route::prefix("{locale}")->group(function() {
+    Route::get('/', function () {
+        return Inertia::render('Home/Home', [
+            'locale' => app()->getLocale(),
+            'heroTranslationFile' => __("hero"),
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
+    })->name('home');
+});
+
+Route::get('locale/{locale}', function (string $locale) {
+    Session()->put('locale', $locale);
+    return redirect()->back();
+})->name('locale');
+
 
 Route::get("/test", function () {
     return Inertia::render("test", [
