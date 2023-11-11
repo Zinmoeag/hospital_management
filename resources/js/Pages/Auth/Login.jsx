@@ -28,70 +28,102 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <section className='flex items-center justify-center pt-8'>
+                <section className='w-[28rem] bg-white shadow-lg px-8 py-4'>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+                    <Head title="Log in" />
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
+                    <form onSubmit={submit}>
+                        <div>
+                            <InputLabel htmlFor="email" value="Email" />
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
+                            <TextInput
+                                id="email"
+                                type="email"
+                                name="email"
+                                value={data.email}
+                                className="mt-1 block w-full"
+                                autoComplete="username"
+                                isFocused={true}
+                                onChange={(e) => setData('email', e.target.value)}
+                            />
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                            <InputError message={errors.email} className="mt-2" />
+                        </div>
 
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
+                        <div className="mt-4">
+                            <InputLabel htmlFor="password" value="Password" />
 
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
+                            <TextInput
+                                id="password"
+                                type="password"
+                                name="password"
+                                value={data.password}
+                                className="mt-1 block w-full"
+                                autoComplete="current-password"
+                                onChange={(e) => setData('password', e.target.value)}
+                            />
 
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
+                            <InputError message={errors.password} className="mt-2" />
+                        </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
+                        <div className="block mt-4">
+                            <label className="flex items-center">
+                                <Checkbox
+                                    name="remember"
+                                    checked={data.remember}
+                                    onChange={(e) => setData('remember', e.target.checked)}
+                                />
+                                <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                            </label>
+                        </div>
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
-            </form>
+                        <div id='sso-box' className='flex items-center justify-center gap-2 h-[3rem] my-4'>
+                            <a 
+                            id='google' 
+                            className='h-full py-2 bg-blue-300 w-full flex items-center justify-center'
+                            href="/auth/redirect/google"
+                            >
+                                <img 
+                                src="https://companieslogo.com/img/orig/GOOG-0ed88f7c.png?t=1633218227" 
+                                alt="" 
+                                className='h-full'
+                                />
+                            </a>
+
+                            <a 
+                            id='google' 
+                            className='h-full py-2 bg-blue-300 w-full flex items-center justify-center'
+                            href="/auth/redirect/google"
+                            >
+                                <img 
+                                src="https://companieslogo.com/img/orig/GOOG-0ed88f7c.png?t=1633218227" 
+                                alt="" 
+                                className='h-full'
+                                />
+                            </a>
+                        </div>
+
+                        <div className="flex items-center justify-end mt-4">
+                            {canResetPassword && (
+                                <Link
+                                    href={route('password.request')}
+                                    className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                >
+                                    Forgot your password?
+                                </Link>
+                            )}
+
+                            <PrimaryButton className="ml-4" disabled={processing}>
+                                Log in
+                            </PrimaryButton>
+                        </div>
+                    </form>
+                </section>
+
+            </section>
         </GuestLayout>
     );
 }

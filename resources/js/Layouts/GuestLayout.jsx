@@ -9,7 +9,7 @@ export default function Guest({ children,auth,locale }) {
                 auth={auth}
                 locale={locale}
             />
-            <div className="">
+            <div className="mt-[6rem]">
                 {children}
             </div>
         </div>

@@ -2,6 +2,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProviderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,6 +21,12 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return redirect("/en");
 });
+
+
+ 
+Route::get('/auth/redirect/{provider}', [ProviderController::class, 'redirectToProvider']);
+ 
+Route::get('/auth/callback/{provider}', [ProviderController::class,'callback']);
 
 Route::prefix("{locale}")->group(function() {
     Route::get('/', function () {

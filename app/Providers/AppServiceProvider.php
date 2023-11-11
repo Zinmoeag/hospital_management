@@ -8,7 +8,7 @@ use Inertia\Inertia;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register any appication services.
      */
     public function register(): void
     {

@@ -2,10 +2,9 @@ import { Head, Link, useForm } from '@inertiajs/react';
 
 const Nav = ({auth,locale}) => {
 
-    console.log(locale)
     return (
         < >
-            <section className="bg-emerald-500 fixed left-0 right-0 shadow-md">
+            <section className="bg-emerald-500 fixed left-0 right-0 shadow-md top-0">
                 <div className="flex justify-between items-center px-10 h-[3rem] bg-white">
                     <div className='flex items-center'>
                         <img 
@@ -29,7 +28,7 @@ const Nav = ({auth,locale}) => {
                             my
                         </Link>
                         </div>
-                        {auth.user ? (
+                        {auth?.user ? (
                             <div className=' flex gap-2 text-slate-700'>
                                 <Link className='hover:text-emerald-800'>
                                     Profile
@@ -39,7 +38,7 @@ const Nav = ({auth,locale}) => {
                         ): (
                             <div className=' flex gap-2 text-green-700'>
                                 <Link
-                                href='/login'
+                                href='/en/login'
                                 className='hover:text-emerald-800'>
                                     Login
                                 </Link>
@@ -49,6 +48,8 @@ const Nav = ({auth,locale}) => {
                                 className='hover:text-emerald-800'>
                                     Register
                                 </Link>
+
+                                <a href="/auth/redirect/google">google</a>
                             </div>
                         )}
                     </div>
