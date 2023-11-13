@@ -28,7 +28,7 @@ class ProviderController extends Controller
         $providerUser = Socialite::driver($provider)->user();
         $this->authService->authenticationStore($providerUser);
 
-        return redirect()->back();
+        return redirect("/");
 
     }
 }

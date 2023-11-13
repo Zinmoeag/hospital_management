@@ -7,7 +7,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Login({ status, canResetPassword }) {
+export default function Login({ status, canResetPassword, locale, auth}) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -27,9 +27,12 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
-            <section className='flex items-center justify-center pt-8'>
-                <section className='w-[28rem] bg-white shadow-lg px-8 py-4'>
+        <GuestLayout
+            auth={auth}
+            locale={locale}
+        >
+            <section className='flex items-center justify-center bg-blue-400' style={{height : "calc(100vh - 6rem)",}}>
+                <section className='w-[28rem] bg-white/80 shadow-lg px-8 py-14 rounded-lg'>
 
                     <Head title="Log in" />
 
@@ -80,10 +83,10 @@ export default function Login({ status, canResetPassword }) {
                             </label>
                         </div>
 
-                        <div id='sso-box' className='flex items-center justify-center gap-2 h-[3rem] my-4'>
+                        <div id='sso-box' className='flex items-center justify-center gap-2 h-[2.5rem] my-4'>
                             <a 
                             id='google' 
-                            className='h-full py-2 bg-blue-300 w-full flex items-center justify-center'
+                            className='h-full py-2 bg-slate-300 w-full flex items-center justify-center'
                             href="/auth/redirect/google"
                             >
                                 <img 
@@ -94,12 +97,12 @@ export default function Login({ status, canResetPassword }) {
                             </a>
 
                             <a 
-                            id='google' 
-                            className='h-full py-2 bg-blue-300 w-full flex items-center justify-center'
-                            href="/auth/redirect/google"
+                            id='github' 
+                            className='h-full py-2 bg-slate-600 w-full flex items-center justify-center'
+                            href="/auth/redirect/github"
                             >
                                 <img 
-                                src="https://companieslogo.com/img/orig/GOOG-0ed88f7c.png?t=1633218227" 
+                                src="https://pic.onlinewebfonts.com/thumbnails/icons_411880.svg" 
                                 alt="" 
                                 className='h-full'
                                 />
@@ -109,7 +112,7 @@ export default function Login({ status, canResetPassword }) {
                         <div className="flex items-center justify-end mt-4">
                             {canResetPassword && (
                                 <Link
-                                    href={route('password.request')}
+                                    href={route('password.request',{locale : locale})}
                                     className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 >
                                     Forgot your password?
