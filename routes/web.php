@@ -39,6 +39,12 @@ Route::prefix("{locale}")->group(function() {
             'phpVersion' => PHP_VERSION,
         ]);
     })->name('home');
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard', [
+            'locale' => app()->getLocale(),
+        ]);
+    })->middleware(['auth', 'verified'])->name('dashboard');
 });
 
 Route::get('locale/{locale}', function (string $locale) {
@@ -53,9 +59,7 @@ Route::get("/test", function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

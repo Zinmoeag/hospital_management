@@ -22,8 +22,7 @@ export default function Login({ status, canResetPassword, locale, auth}) {
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route('login'));
+        post(route('login', {locale : 'en'}));
     };
 
     return (

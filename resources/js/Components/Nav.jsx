@@ -32,7 +32,9 @@ const Nav = ({auth,locale}) => {
                         </div>
                         {auth?.user ? (
                             <div className=' flex gap-2 text-slate-700'>
-                                <Link className='hover:text-emerald-800'>
+                                <Link 
+                                href={route('dashboard', {locale : locale})}
+                                className='hover:text-emerald-800'>
                                     Profile
                                 </Link>
 
