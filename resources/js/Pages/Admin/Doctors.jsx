@@ -1,8 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
-export default function Dashboard({ auth, locale }) {
-
+export default function Doctors({ auth, locale }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -14,7 +13,12 @@ export default function Dashboard({ auth, locale }) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">You're logged in!</div>
+                        <div id="btn-group" className="justify-end items-center flex py-4 px-4">
+                            <button className='bg-white hover:bg-slate-500 hover:text-white border-[0.01rem] border-slate-500 py-1 px-4 rounded-md text-sm  text-slate-600 overflow-hidden'>
+                                Request
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>

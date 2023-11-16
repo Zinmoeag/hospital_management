@@ -2,8 +2,6 @@ import { Head, Link, useForm } from '@inertiajs/react';
 
 const Nav = ({auth,locale}) => {
 
-    console.log(locale)
-
     return (
         < >
             <section className="bg-emerald-500 fixed left-0 right-0 shadow-md top-0">
@@ -32,11 +30,20 @@ const Nav = ({auth,locale}) => {
                         </div>
                         {auth?.user ? (
                             <div className=' flex gap-2 text-slate-700'>
-                                <Link 
-                                href={route('dashboard', {locale : locale})}
-                                className='hover:text-emerald-800'>
-                                    Profile
-                                </Link>
+
+                                {auth?.user?.role ==="admin" ? (
+                                    <Link 
+                                    href={route('dashboard', {locale : locale})}
+                                    className='hover:text-emerald-800'>
+                                       Dashboard
+                                    </Link>
+                                ): (
+                                    <Link 
+                                    href={route('profile', {locale : locale})}
+                                    className='hover:text-emerald-800'>
+                                        Profile
+                                    </Link>
+                                )}
 
                             </div>
                         ): (

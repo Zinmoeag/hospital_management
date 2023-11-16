@@ -16,6 +16,14 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+
+    public function show()
+    {
+        return Inertia::render('Profile/Profile', [
+            'locale' => app()->getLocale(),
+        ]);
+    }
+    
     public function edit(Request $request): Response
     {
         return Inertia::render('Profile/Edit', [

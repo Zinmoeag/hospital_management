@@ -6,6 +6,7 @@ use App\Http\Controllers\ProviderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +41,15 @@ Route::prefix("{locale}")->group(function() {
         ]);
     })->name('home');
 
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
             'locale' => app()->getLocale(),
         ]);
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    })->middleware(['auth', 'verified', 'admin'])->name('dashboard');
+
+    Route::get('/dashboard/admin/doctors', [AdminController::class, "showDoctor"])->name("admin.doctors");
 });
 
 Route::get('locale/{locale}', function (string $locale) {
@@ -62,7 +67,7 @@ Route::get("/test", function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
