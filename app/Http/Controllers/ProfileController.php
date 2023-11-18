@@ -23,6 +23,7 @@ class ProfileController extends Controller
             'locale' => app()->getLocale(),
         ]);
     }
+
     
     public function edit(Request $request): Response
     {

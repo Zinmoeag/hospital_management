@@ -26,7 +26,7 @@ export default function Profile({ auth, locale }) {
                                 <ul id="option">
                                     <li className="py-2 px-4">
                                         <Link 
-                                        href="/"
+                                        href={route("profile.applyDoctor", {locale: locale})}
                                         className="hover:text-blue-500"
                                         >
                                             Apply Doctor
