@@ -53,17 +53,10 @@ class DoctorApplicationForm extends Mailable
      */
     public function attachments(): array
     {
-
-        // $file = Storage::url('/form/doctor_application.pdf');
-        // dd($file);
-        // $attachment = Attachment::fromStorage('/form/doctor_application.pdf')
-        //         ->as('doctor application form.pdf')
-        //         ->withMime('application/pdf');
-        // dd($attachment);
         return [
-            // Attachment::fromStorage('form/doctor_application.pdf')
-            //     ->as('doctor application form.pdf')
-            //     ->withMime('application/pdf')
+            Attachment::fromStorage('public/form/doctor_application.pdf')
+                ->as('doctor_application_form.pdf')
+                 ->withMime('application/pdf'),
         ];
     }
 }

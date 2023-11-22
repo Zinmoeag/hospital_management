@@ -9,10 +9,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Mail\Mailables\Envelope;
-use App\Mail\DoctorApplicationForm;
 
+use Illuminate\Mail\Mailables\Envelope;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +23,7 @@ use App\Mail\DoctorApplicationForm;
 */
 
 Route::get('/', function () {
-    // return redirect("/en");
-
-     Mail::to('zmoe7932@gmail.com')->send(new DoctorApplicationForm());
+    return redirect("/en");
 });
 
 
@@ -59,7 +55,15 @@ Route::prefix("{locale}")->group(function() {
     })->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
     Route::get('/dashboard/admin/doctors', [AdminController::class, "showDoctor"])->name("admin.doctors");
+});
 
+
+//doctor
+Route::prefix('{locale}')->group(function (){
+    Route::get('/profile/apply-doctor',[DoctorController::class, "requestForm"])
+        ->name('profile.applyDoctor');
+    Route::post('/profile/apply-doctor',[DoctorController::class, "submitRequestForm"])
+        ->name('profile.submitApplyDoctor');
 });
 
 Route::get('locale/{locale}', function (string $locale) {
